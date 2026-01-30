@@ -1,9 +1,16 @@
-CREATE DATABASE taskdb;
+SELECT 'CREATE DATABASE taskdb' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'taskdb')\gexec
 \c taskdb;
 
-CREATE USER taskuser WITH PASSWORD 'taskpass';
+DO
+$$
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'taskuser') THEN
+      CREATE USER taskuser WITH PASSWORD 'taskpass';
+   END IF;
+END
+$$;
 
-CREATE TABLE tasks (
+CREATE TABLE IF NOT EXISTS tasks (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
