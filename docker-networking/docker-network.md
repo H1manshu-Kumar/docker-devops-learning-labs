@@ -1,4 +1,4 @@
-# Docker Networking – Concepts & Hands-On Notes
+# Docker Networking - Concepts & Hands-On Notes
 
 ## 1. What is Docker Networking?
 Docker networking enables communication between containers, containers and the host, and containers across multiple hosts.
@@ -51,4 +51,146 @@ Docker networking enables:
 
 ```bash
 docker network create taskmanager-network
+```
+---
+## 5. Container DNS & Service Discovery
+Docker provides an internal DNS server for user-defined networks.
 
+### Key Points
+- Container name acts as hostname
+- No hardcoded IPs required
+- Container restarts do not break communication
+
+Example:
+```bash
+mysql://taskmanager-db:3306
+```
+**Important:** `localhost` does not work between containers.
+
+
+## 6. Port Mapping vs Internal Networking
+### Internal Communication
+- Happens inside Docker network
+- No port exposure required
+
+**Host** **↔** **Container Access**
+- Requires port mapping
+```bash
+-p 3000:3000
+```
+### Best Practice
+| Service | Expose to Host | Reason |
+|------|---------------|------|
+| Frontend | Yes | User access |
+| Database | No | Security |
+
+---
+## 7. Hands-On Architecture: Task Manager App
+
+### Components
+- Frontend: Node.js task manager
+- Database: MySQL
+- Network: User-defined bridge network
+
+### Communication Flow
+```
+Browser → Frontend Container → Database Container
+```
+
+- Containers attached to same network
+- Frontend connects using DB container name
+- Database port not exposed to host
+
+---
+
+## 8. Docker Commands Used
+
+### Create Network
+```bash
+docker network create taskmanager-network
+```
+
+### Run Database Container
+```bash
+docker run -d \
+  --name taskmanager-db \
+  --network taskmanager-network \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  mysql:8
+```
+
+### Run Frontend Container
+```bash
+docker run -d \
+  --name taskmanager-app \
+  --network taskmanager-network \
+  -p 3000:3000 \
+  taskmanager-frontend
+```
+
+---
+
+## 9. Debugging Docker Networks
+
+### Inspect Network
+```bash
+docker network inspect taskmanager-network
+```
+
+### Access Container Shell
+```bash
+docker exec -it taskmanager-app sh
+```
+
+### Test Connectivity
+```bash
+ping taskmanager-db
+```
+
+---
+
+## 10. Common Mistakes
+
+❌ Using `localhost` for container-to-container communication  
+❌ Hardcoding container IP addresses  
+❌ Exposing database ports unnecessarily  
+❌ Using default bridge for production-like setups  
+
+✅ Use container names  
+✅ Use user-defined bridge networks  
+✅ Keep databases internal  
+✅ Inspect networks when debugging  
+
+---
+
+## 11. Security Best Practices
+- Use isolated networks per application
+- Expose only required services
+- Avoid `--network host`
+- Never expose database ports publicly
+
+---
+
+## 12. Docker Networking vs Kubernetes (Concept Mapping)
+
+| Docker | Kubernetes |
+|------|-----------|
+| Docker network | Kubernetes Service |
+| Container name | Service name |
+| Bridge network | Pod network |
+| Port mapping | NodePort / Ingress |
+
+Docker networking knowledge directly helps in Kubernetes.
+
+---
+
+## 13. Observations
+- Containers communicate using Docker DNS via service names
+- User-defined bridge networks provide isolation and DNS
+- Databases should remain internal to Docker networks
+- Docker networking removes dependency on static IPs
+
+---
+## ✍️ Author
+
+**[Himanshu Kumar](https://www.linkedin.com/in/h1manshu-kumar/)** – Learning by building, documenting, and sharing 🚀
