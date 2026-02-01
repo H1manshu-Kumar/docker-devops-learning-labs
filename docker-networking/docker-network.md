@@ -50,7 +50,7 @@ Docker networking enables:
 - Better isolation and security
 
 ```bash
-docker network create taskmanager-network
+docker network create task-network
 ```
 ---
 ## 5. Container DNS & Service Discovery
@@ -63,7 +63,7 @@ Docker provides an internal DNS server for user-defined networks.
 
 Example:
 ```bash
-mysql://taskmanager-db:3306
+postgresql://task-db:5432
 ```
 **Important:** `localhost` does not work between containers.
 
@@ -89,7 +89,7 @@ mysql://taskmanager-db:3306
 
 ### Components
 - Frontend: Node.js task manager
-- Database: MySQL
+- Database: POSTGRESQL
 - Network: User-defined bridge network
 
 ### Communication Flow
@@ -107,44 +107,35 @@ Browser → Frontend Container → Database Container
 
 ### Create Network
 ```bash
-docker network create taskmanager-network
+docker network create task-network
 ```
 
 ### Run Database Container
 ```bash
-docker run -d \
-  --name taskmanager-db \
-  --network taskmanager-network \
-  -e MYSQL_ROOT_PASSWORD=secret \
-  mysql:8
+docker run -d --name task-db --network task-network -e POSTGRES_DB=taskdb -e POSTGRES_USER=taskuser -e POSTGRES_PASSWORD=taskpass task-db:latest
 ```
 
 ### Run Frontend Container
 ```bash
-docker run -d \
-  --name taskmanager-app \
-  --network taskmanager-network \
-  -p 3000:3000 \
-  taskmanager-frontend
+docker run -d --name task-app --network task-network -p 3000:3000 -e DB_HOST=task-db -e DB_PORT=5432 -e DB_NAME=taskdb -e DB_USER=taskuser -e DB_PASS=taskpass task-app:latest
 ```
-
 ---
 
 ## 9. Debugging Docker Networks
 
 ### Inspect Network
 ```bash
-docker network inspect taskmanager-network
+docker network inspect task-network
 ```
 
 ### Access Container Shell
 ```bash
-docker exec -it taskmanager-app sh
+docker exec -it task-app sh
 ```
 
 ### Test Connectivity
 ```bash
-ping taskmanager-db
+ping task-db
 ```
 
 ---
