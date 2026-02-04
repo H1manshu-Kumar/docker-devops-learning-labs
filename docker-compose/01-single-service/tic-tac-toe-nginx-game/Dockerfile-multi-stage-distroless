@@ -1,0 +1,30 @@
+# Stage 1: Build stage using Node.js Alpine image
+FROM node:alpine AS build
+
+# Set working directory for build stage
+WORKDIR /workspace
+
+# Copy server file to workspace
+COPY server.js /workspace
+# Copy static web app files to workspace
+COPY tic-tac-toe-app/ /workspace/tic-tac-toe-app/
+
+# Stage 2: Production stage using distroless image
+FROM gcr.io/distroless/nodejs20-debian12
+
+# Set working directory for production
+WORKDIR /app
+
+# Copy server file from build stage to production
+COPY --from=build /workspace/server.js /app
+# Copy static app files from build stage to production
+COPY --from=build /workspace/tic-tac-toe-app/ /app/tic-tac-toe-app/
+
+# Expose port 8080 for the Node.js server
+EXPOSE 8080
+
+# Run the server (distroless uses exec form)
+CMD ["server.js"]
+
+
+

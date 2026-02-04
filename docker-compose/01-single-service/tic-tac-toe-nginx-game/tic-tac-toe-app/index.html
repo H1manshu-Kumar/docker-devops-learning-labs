@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe | Docker Learning Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Tic-Tac-Toe Game</h1>
+            <p>Dockerized Game with NGINX</p>
+        </header>
+        
+        <div class="game-container">
+            <div class="scoreboard">
+                <div class="score">
+                    <h3>Player X</h3>
+                    <span id="scoreX">0</span>
+                </div>
+                <div class="score">
+                    <h3>Player O</h3>
+                    <span id="scoreO">0</span>
+                </div>
+                <div class="score">
+                    <h3>Draws</h3>
+                    <span id="scoreDraw">0</span>
+                </div>
+            </div>
+            
+            <div class="game-info">
+                <h2 id="gameStatus">Player X's Turn</h2>
+            </div>
+            
+            <div class="game-board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            
+            <div class="controls">
+                <button id="resetGame">New Game</button>
+                <button id="resetScore">Reset Score</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>🐳 Created with ❤️ by <a href="https://github.com/H1manshu-Kumar" target="_blank">Himanshu-Kumar</a></p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

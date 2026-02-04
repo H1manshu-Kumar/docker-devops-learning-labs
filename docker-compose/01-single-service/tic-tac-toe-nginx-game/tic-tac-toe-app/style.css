@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.game-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.score {
+    text-align: center;
+}
+
+.score h3 {
+    color: #495057;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.score span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.game-info h2 {
+    color: #495057;
+    font-size: 1.5rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell {
+    width: 90px;
+    height: 90px;
+    background: #e9ecef;
+    border: 3px solid #dee2e6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cell:hover {
+    background: #f8f9fa;
+    border-color: #2196F3;
+    transform: scale(1.05);
+}
+
+.cell.x {
+    color: #e74c3c;
+}
+
+.cell.o {
+    color: #3498db;
+}
+
+.cell.winner {
+    background: #d4edda;
+    border-color: #28a745;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#resetGame {
+    background: #28a745;
+    color: white;
+}
+
+#resetGame:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+#resetScore {
+    background: #dc3545;
+    color: white;
+}
+
+#resetScore:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+footer {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+footer a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -1,0 +1,10 @@
+services:
+  tic-tac-toe:
+    image: tic-tac-toe
+    container_name: tic-tac-toe-container
+    ports:
+      - "8181:8080"
+    build:
+      context: /home/superuser/Work/DevOps_Training_TWS/Git_repos/docker/docker-compose/01-single-service/tic-tac-toe-nginx-game
+      dockerfile: Dockerfile-multi-stage-distroless
+
