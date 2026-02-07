@@ -89,7 +89,7 @@ docker compose up
 
 ---
 
-## DevOps & QA Perspective
+## Observations
 
 - Mirrors real-world local development and QA environments
 - Reduces environment setup complexity
@@ -117,8 +117,7 @@ docker compose up
 
 ---
 
-## Author
+## ✍️ Author
 
-**Himanshu Kumar**  
-Docker & DevOps Hands-on Learning
+**[Himanshu Kumar](https://www.linkedin.com/in/h1manshu-kumar/)** - Learning by building, documenting, and sharing 🚀
 
