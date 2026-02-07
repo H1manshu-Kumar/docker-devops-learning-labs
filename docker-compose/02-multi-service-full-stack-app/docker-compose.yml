@@ -30,6 +30,7 @@ services:
       - "3000:3000"
     depends_on:
       - task-db
+    restart: always
 
 volumes:
   postgresql:
