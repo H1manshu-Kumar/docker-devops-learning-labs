@@ -1,8 +1,8 @@
-# Docker Compose – Multi-Service Full Stack Application
+# Docker Compose - Multi-Service Full Stack Application
 
 This module demonstrates a **multi-service full-stack application** orchestrated using **Docker Compose**.
 
-It builds upon previous Docker Compose learnings (single-service and basic multi-service) and shows how a **frontend, backend, and database** can be managed together as a single stack.
+It builds upon previous Docker Compose learnings (single-service and basic multi-service) and shows how a **frontend and database** can be managed together as a single stack.
 
 ---
 
@@ -38,11 +38,13 @@ All services run on the same Docker Compose network and communicate using **serv
 
 ```text
 02-multi-service-full-stack-app/
-├── frontend/
-├── backend/
-├── database/
+├── Tast-Manager-App/
+      ├── frontend/
+      ├── database/
+      └── README.md
 ├── docker-compose.yml
 └── README.md
+
 ```
 
 ---
@@ -61,22 +63,45 @@ All services run on the same Docker Compose network and communicate using **serv
 
 ```yaml
 services:
-  frontend:
-    build: ./frontend
+  task-db:
+    image: task-db:latest
+    container_name: task-db-container
+    environment:
+      POSTGRES_DB: taskdb
+      POSTGRES_USER: taskuser
+      POSTGRES_PASSWORD: taskpass
+    build:
+      context: ./02-multi-service-full-stack-app/Task-Manager-App/database
+      dockerfile: Dockerfile
+    volumes:
+      - ./postgresql:/var/lib/postgresql    
+    networks:
+      - task-network
+  task-app:
+    image: task-app:latest
+    container_name: task-app-container
+    environment:
+      DB_HOST: task-db\
+      DB_NAME: taskdb
+      DB_USER: taskuser
+      DB_PASS: taskpass
+    build:
+      context: ./02-multi-service-full-stack-app/Task-Manager-App/frontend
+      dockerfile: Dockerfile
+    networks:
+      - task-network
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - task-db
+    restart: always
 
-  backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
-    depends_on:
-      - database
+volumes:
+  postgresql:
 
-  database:
-    image: mysql:8
+networks:
+  task-network:
+
 ```
 
 > Note: Docker Compose automatically creates a shared bridge network for all services defined in the file.
@@ -102,8 +127,7 @@ docker compose up -d
 
 ## Access the Application
 
-- **Frontend**: http://localhost:3000  
-- **Backend**: http://localhost:8080  
+- **Task-Manager-App**: http://localhost:3000    
 
 (The database runs internally and is not exposed publicly.)
 
@@ -130,7 +154,7 @@ docker compose up -d
 
 ---
 
-## DevOps Perspective
+## Observation
 
 - Mirrors real-world microservice and full-stack setups
 - Ideal for local development, QA, and CI environments
@@ -139,18 +163,7 @@ docker compose up -d
 
 ---
 
-## Common Beginner Mistakes Avoided
+## ✍️ Author
 
-- Hardcoding container IP addresses
-- Manually creating Docker networks
-- Running services independently
-- Mixing infrastructure logic into application code
-
----
-
-## Next Step
-
-- Add persistent storage using Docker Compose volumes
-- Introduce environment variables with `.env` files
-- Transition the same setup toward Kubernetes manifests
+**[Himanshu Kumar](https://www.linkedin.com/in/h1manshu-kumar/)** - Learning by building, documenting, and sharing 🚀
 
