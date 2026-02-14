@@ -1,0 +1,10 @@
+ ✓ SBOM of image already cached, 67 packages indexed
+
+    i Base image was auto-detected. To get more accurate results, build images with max-mode provenance attestations.
+      Review docs.docker.com ↗ for more information.
+
+ Target             │  task-db:latest      │    1C     6H    11M     0L  
+   digest           │  3733b6e2f032        │                             
+ Base image         │  postgres:15-alpine  │    1C     6H    11M     0L  
+ Updated base image │  postgres:16-alpine  │    1C     6H    11M     0L  
+                    │                      │                             

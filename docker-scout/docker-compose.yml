@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: taskuser
       POSTGRES_PASSWORD: taskpass
     build:
-      context: ./02-multi-service-full-stack-app/Task-Manager-App/database
+      context: ./multi-service-full-stack-app/Task-Manager-App/database
       dockerfile: Dockerfile
     volumes:
       - ./postgresql:/var/lib/postgresql    
@@ -17,12 +17,12 @@ services:
     image: task-app:latest
     container_name: task-app-container
     environment:
-      DB_HOST: task-db\
+      DB_HOST: task-db
       DB_NAME: taskdb
       DB_USER: taskuser
       DB_PASS: taskpass
     build:
-      context: ./02-multi-service-full-stack-app/Task-Manager-App/frontend
+      context: ./multi-service-full-stack-app/Task-Manager-App/frontend
       dockerfile: Dockerfile
     networks:
       - task-network

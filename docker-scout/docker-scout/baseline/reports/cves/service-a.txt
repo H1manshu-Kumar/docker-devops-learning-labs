@@ -1,0 +1,129 @@
+✓ SBOM of image already cached, 67 packages indexed
+    ✗ Detected 3 vulnerable packages with a total of 18 vulnerabilities
+
+
+## Overview
+
+                   │       Analyzed Image        
+───────────────────┼─────────────────────────────
+ Target            │  task-db:latest             
+   digest          │  3733b6e2f032               
+   platform        │ linux/amd64                 
+   vulnerabilities │    1C     6H    11M     0L  
+   size            │ 122 MB                      
+   packages        │ 67                          
+
+
+## Packages and Vulnerabilities
+
+   1C     6H     9M     0L  stdlib 1.24.6
+pkg:golang/stdlib@1.24.6
+
+    ✗ CRITICAL CVE-2025-68121
+      https://scout.docker.com/v/CVE-2025-68121
+      Affected range : <1.24.13 
+      Fixed version  : 1.24.13  
+    
+    ✗ HIGH CVE-2025-61729
+      https://scout.docker.com/v/CVE-2025-61729
+      Affected range : <1.24.11 
+      Fixed version  : 1.24.11  
+    
+    ✗ HIGH CVE-2025-61726
+      https://scout.docker.com/v/CVE-2025-61726
+      Affected range : <1.24.12 
+      Fixed version  : 1.24.12  
+    
+    ✗ HIGH CVE-2025-61725
+      https://scout.docker.com/v/CVE-2025-61725
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ HIGH CVE-2025-61723
+      https://scout.docker.com/v/CVE-2025-61723
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ HIGH CVE-2025-58188
+      https://scout.docker.com/v/CVE-2025-58188
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ HIGH CVE-2025-58187
+      https://scout.docker.com/v/CVE-2025-58187
+      Affected range : <1.24.9 
+      Fixed version  : 1.24.9  
+    
+    ✗ MEDIUM CVE-2025-61728
+      https://scout.docker.com/v/CVE-2025-61728
+      Affected range : <1.24.12 
+      Fixed version  : 1.24.12  
+    
+    ✗ MEDIUM CVE-2025-61727
+      https://scout.docker.com/v/CVE-2025-61727
+      Affected range : <1.24.11 
+      Fixed version  : 1.24.11  
+    
+    ✗ MEDIUM CVE-2025-61730
+      https://scout.docker.com/v/CVE-2025-61730
+      Affected range : <1.24.12 
+      Fixed version  : 1.24.12  
+    
+    ✗ MEDIUM CVE-2025-61724
+      https://scout.docker.com/v/CVE-2025-61724
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ MEDIUM CVE-2025-58189
+      https://scout.docker.com/v/CVE-2025-58189
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ MEDIUM CVE-2025-58186
+      https://scout.docker.com/v/CVE-2025-58186
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ MEDIUM CVE-2025-58185
+      https://scout.docker.com/v/CVE-2025-58185
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ MEDIUM CVE-2025-47912
+      https://scout.docker.com/v/CVE-2025-47912
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+    ✗ MEDIUM CVE-2025-58183
+      https://scout.docker.com/v/CVE-2025-58183
+      Affected range : <1.24.8 
+      Fixed version  : 1.24.8  
+    
+
+   0C     0H     1M     0L  openldap 2.6.10-r0
+pkg:apk/alpine/openldap@2.6.10-r0?os_name=alpine&os_version=3.23
+
+    ✗ MEDIUM CVE-2026-22185
+      https://scout.docker.com/v/CVE-2026-22185
+      Affected range : <=2.6.10-r0 
+      Fixed version  : not fixed   
+    
+
+   0C     0H     1M     0L  busybox 1.37.0-r30
+pkg:apk/alpine/busybox@1.37.0-r30?os_name=alpine&os_version=3.23
+
+    ✗ MEDIUM CVE-2025-60876
+      https://scout.docker.com/v/CVE-2025-60876
+      Affected range : <=1.37.0-r30 
+      Fixed version  : not fixed    
+    
+
+
+18 vulnerabilities found in 3 packages
+  CRITICAL  1  
+  HIGH      6  
+  MEDIUM    11 
+  LOW       0  
+
+
+
