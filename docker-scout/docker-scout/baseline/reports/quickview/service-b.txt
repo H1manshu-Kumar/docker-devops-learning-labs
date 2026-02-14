@@ -1,0 +1,12 @@
+✓ Image stored for indexing
+    ✓ Indexed 297 packages
+
+    i Base image was auto-detected. To get more accurate results, build images with max-mode provenance attestations.
+      Review docs.docker.com ↗ for more information.
+
+ Target             │  task-app:latest  │    0C     5H     1M     3L  
+   digest           │  70643fd87134     │                             
+ Base image         │  node:20-alpine   │    0C     5H     1M     2L  
+ Updated base image │  node:24-alpine   │    0C     2H     1M     0L  
+                    │                   │           -3            -2  
+
