@@ -1,24 +1,10 @@
-# Phase 1 --- Baseline Scan (Establish Reality)
+# Phase 1 - Baseline Scan
 
 ## Objective
 
-Establish the current container security posture of the
-`02-multi-service-app` using Docker Scout. This phase focuses on
-discovery --- understanding vulnerabilities, base images, and dependency
-inventory before making any improvements.
+Establish the current container security posture of the `multi-service-app` using Docker Scout. This phase focuses on discovery - understanding vulnerabilities, base images, and dependency inventory before making any improvements.
 
 No Dockerfiles or runtime configurations are modified in this phase.
-
-------------------------------------------------------------------------
-
-## Branch Strategy
-
-Create a dedicated branch:
-
-    feature/docker-scout-phase1-baseline
-
-All work, reports, and documentation for Phase 1 should be committed
-here.
 
 ------------------------------------------------------------------------
 
@@ -37,12 +23,16 @@ here.
 ### 1. Build services
 
     docker compose build
+<img width="551" height="180" alt="image" src="https://github.com/user-attachments/assets/dc4257b6-c586-4201-91b4-dcda7321b831" />
 
 ------------------------------------------------------------------------
 
 ### 2. List images
 
     docker images
+
+<img width="616" height="59" alt="image" src="https://github.com/user-attachments/assets/84d7d32c-7e2c-43c1-ad3f-63f843ff3230" /> </br>
+
 
 Identify images corresponding to each service.
 
@@ -51,6 +41,10 @@ Identify images corresponding to each service.
 ### 3. Run quick overview scan
 
     docker scout quickview <image-name>
+
+<img width="1176" height="187" alt="image" src="https://github.com/user-attachments/assets/39592f61-13a8-4aa3-8253-2f5b3fa9e5d5" /> </br>
+
+<img width="1176" height="217" alt="image" src="https://github.com/user-attachments/assets/1f54d49e-92fe-49b3-8810-3954da868394" /> </br> 
 
 This provides:
 
@@ -63,6 +57,10 @@ This provides:
 ### 4. Run detailed vulnerability scan
 
     docker scout cves <image-name>
+
+<img width="715" height="576" alt="image" src="https://github.com/user-attachments/assets/e79adea4-f5b9-4c16-8173-4f25245863f4" /> </br>
+
+<img width="708" height="523" alt="image" src="https://github.com/user-attachments/assets/f46af03b-a43f-4af2-99b8-eefd9523fb10" /> </br>
 
 Review:
 
@@ -82,12 +80,12 @@ This records the dependency inventory for auditing and analysis.
 
 ## Evidence
 
-Store scan artifacts in:
+find scan artifacts in:
 
     docker-scout/baseline/reports/
     docker-scout/baseline/screenshots/
 
-Recommended screenshots:
+Screenshots:
 
 -   Quickview output
 -   CVE summary
