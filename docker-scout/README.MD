@@ -1,169 +1,135 @@
-# Docker Compose - Multi-Service Full Stack Application
+# Docker Scout - Security Assessment Module
 
-This module demonstrates a **multi-service full-stack application** orchestrated using **Docker Compose**.
+## Overview
 
-It builds upon previous Docker Compose learnings (single-service and basic multi-service) and shows how a **frontend and database** can be managed together as a single stack.
+This folder contains the Docker Scout security assessment work for the
+`02-multi-service-app`.
 
----
+The goal is to introduce container image security practices by
+establishing visibility into vulnerabilities, analyzing risk, and
+documenting findings in a structured manner similar to real DevOps
+workflows.
 
-## Objective
+This module demonstrates how container security can be approached
+incrementally - starting with baseline assessment and evolving toward
+improvement and policy enforcement.
 
-- Understand Docker Compose for full-stack applications
-- Orchestrate multiple dependent services together
-- Learn service-to-service communication using Compose networking
-- Manage the complete application lifecycle with a single command
+------------------------------------------------------------------------
 
----
+## Objectives
 
-## Architecture Overview
+-   Understand the security posture of service images
+-   Generate and review vulnerability reports
+-   Capture SBOM for dependency visibility
+-   Document findings and observations
+-   Build a foundation for future security improvements
+-   Simulate real-world DevSecOps practices
 
-```text
-Client (Browser)
-      |
-      v
-Frontend Service
-      |
-      v
-Backend Service
-      |
-      v
-Database Service
-```
+------------------------------------------------------------------------
 
-All services run on the same Docker Compose network and communicate using **service names**, not IP addresses.
+## Scope
 
----
+The Docker Scout work is organized into phases to reflect a practical
+engineering approach:
+
+1.  Baseline scanning --- establish current risk
+2.  Improvements --- reduce vulnerabilities
+3.  Comparisons --- measure changes
+4.  SBOM analysis --- understand dependencies
+5.  Policy thinking --- prepare for CI enforcement
+
+Phase 1 (baseline) is implemented.
+
+------------------------------------------------------------------------
 
 ## Folder Structure
 
-```text
-02-multi-service-full-stack-app/
-├── Tast-Manager-App/
-      ├── frontend/
-      ├── database/
-      └── README.md
-├── docker-compose.yml
-└── README.md
+    docker-scout/
+    ├ baseline/
+    │  ├ README.md
+    │  ├ reports/
+    │  ├ screenshots/
+    │  └ observations.md
+    │
+    ├ improvements/
+    ├ comparisons/
+    ├ sbom/
+    ├ ci/
+    └ architecture-notes.md
 
-```
+Each phase stores its own reports and documentation to maintain
+traceability.
 
----
+------------------------------------------------------------------------
 
-## Docker Compose Concepts Used
+## Why Docker Scout
 
-- Multi-service orchestration
-- Built-in Docker Compose networking
-- Service-name-based DNS resolution
-- Container dependency management
-- Centralized lifecycle management
+Docker Scout helps answer critical questions:
 
----
+-   What is inside our container images?
+-   Are there known vulnerabilities?
+-   Is our base image outdated?
+-   What should be upgraded?
+-   How does risk change over time?
 
-## Docker Compose Configuration Overview
+It supports shift-left security by providing insights during development
+instead of after deployment.
 
-```yaml
-services:
-  task-db:
-    image: task-db:latest
-    container_name: task-db-container
-    environment:
-      POSTGRES_DB: taskdb
-      POSTGRES_USER: taskuser
-      POSTGRES_PASSWORD: taskpass
-    build:
-      context: ./02-multi-service-full-stack-app/Task-Manager-App/database
-      dockerfile: Dockerfile
-    volumes:
-      - ./postgresql:/var/lib/postgresql    
-    networks:
-      - task-network
-  task-app:
-    image: task-app:latest
-    container_name: task-app-container
-    environment:
-      DB_HOST: task-db\
-      DB_NAME: taskdb
-      DB_USER: taskuser
-      DB_PASS: taskpass
-    build:
-      context: ./02-multi-service-full-stack-app/Task-Manager-App/frontend
-      dockerfile: Dockerfile
-    networks:
-      - task-network
-    ports:
-      - "3000:3000"
-    depends_on:
-      - task-db
-    restart: always
+------------------------------------------------------------------------
 
-volumes:
-  postgresql:
+## How This Is Used in Practice
 
-networks:
-  task-network:
+In real environments, Docker Scout is used to:
 
-```
+-   Scan images during CI builds
+-   Review vulnerabilities before release
+-   Track security posture across versions
+-   Support audits and compliance checks
+-   Guide base image upgrades
 
-> Note: Docker Compose automatically creates a shared bridge network for all services defined in the file.
+This repository simulates those workflows.
 
----
+------------------------------------------------------------------------
 
-## How to Run the Full Stack
+## Key Concepts Covered
 
-Navigate to the project directory:
+-   Vulnerability scanning (CVE analysis)
+-   SBOM generation
+-   Base image hygiene
+-   Security baselining
+-   Risk documentation
+-   Continuous improvement mindset
 
-```bash
-cd docker-compose/02-multi-service-full-stack-app
-docker compose up
-```
+------------------------------------------------------------------------
 
-To run in detached mode:
+## Learning Approach
 
-```bash
-docker compose up -d
-```
+This module follows a learn-in-public model:
 
----
+-   Each phase is developed on a dedicated branch
+-   Findings are documented through reports
+-   Decisions are recorded for transparency
+-   Changes are reviewed via pull requests
 
-## Access the Application
+This mirrors how teams collaborate on security improvements.
 
-- **Task-Manager-App**: http://localhost:3000    
+------------------------------------------------------------------------
 
-(The database runs internally and is not exposed publicly.)
+## Future Enhancements
 
----
+Potential next steps include:
 
-## Key Learnings
+-   Integrating Docker Scout into CI pipelines
+-   Defining vulnerability policies
+-   Automating security gates
+-   Monitoring vulnerability drift
+-   Comparing images across releases
 
-- Running multiple services with a single `docker compose up`
-- Understanding service dependencies using `depends_on`
-- Docker Compose networking and internal DNS
-- Separation of concerns between frontend, backend, and database
-- Declarative definition of a full-stack environment
+------------------------------------------------------------------------
+## 🤝 Contributing
 
----
-
-## docker run vs Docker Compose (Full Stack)
-
-| docker run | Docker Compose |
-|-----------|----------------|
-| Multiple commands | Single command |
-| Manual networks | Automatic networking |
-| Hard to manage dependencies | Built-in dependency handling |
-| Error-prone setup | Repeatable & version controlled |
-
----
-
-## Observation
-
-- Mirrors real-world microservice and full-stack setups
-- Ideal for local development, QA, and CI environments
-- Same declarative mindset as Kubernetes
-- Simplifies onboarding and environment consistency
-
----
+Feel free to fork this project and experiment with different networking configurations. Pull requests welcome!
 
 ## ✍️ Author
 
 **[Himanshu Kumar](https://www.linkedin.com/in/h1manshu-kumar/)** - Learning by building, documenting, and sharing 🚀
-
