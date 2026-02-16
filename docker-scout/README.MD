@@ -126,15 +126,6 @@ Potential next steps include:
 -   Comparing images across releases
 
 ------------------------------------------------------------------------
-
-## Summary
-
-The Docker Scout module demonstrates a practical approach to container
-security by combining tooling, documentation, and engineering judgment.
-It provides a clear history of how image security is assessed and
-improved over time.
-
-------------------------------------------------------------------------
 ## 🤝 Contributing
 
 Feel free to fork this project and experiment with different networking configurations. Pull requests welcome!
