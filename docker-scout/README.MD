@@ -1,4 +1,4 @@
-# Docker Scout --- Security Assessment Module
+# Docker Scout - Security Assessment Module
 
 ## Overview
 
