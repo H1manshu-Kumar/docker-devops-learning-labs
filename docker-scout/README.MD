@@ -1,4 +1,4 @@
-# Docker Scout --- Security Assessment Module
+# Docker Scout - Security Assessment Module
 
 ## Overview
 
@@ -124,15 +124,6 @@ Potential next steps include:
 -   Automating security gates
 -   Monitoring vulnerability drift
 -   Comparing images across releases
-
-------------------------------------------------------------------------
-
-## Summary
-
-The Docker Scout module demonstrates a practical approach to container
-security by combining tooling, documentation, and engineering judgment.
-It provides a clear history of how image security is assessed and
-improved over time.
 
 ------------------------------------------------------------------------
 ## 🤝 Contributing
